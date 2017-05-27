@@ -21,10 +21,7 @@ public class SunMovement : MonoBehaviour
     {
         if (Input.GetKey("right"))
         {
-                        rb.AddForce(Vector2.right * thrust, ForceMode2D.Impulse);
-
-            // rb.velocity += Vector2.right * thrust;
-            // Debug.Log(rb.velocity);
+            rb.AddForce(Vector2.right * thrust, ForceMode2D.Impulse);
         }    
         if (Input.GetKey("left"))
         {
@@ -38,5 +35,11 @@ public class SunMovement : MonoBehaviour
         {
             rb.AddForce(Vector2.down * thrust, ForceMode2D.Impulse);
         }    
+
+        if (Input.GetKey("space"))
+        {
+            //handbreak
+            rb.velocity = Vector2.zero;
+        }
     }   
 }
