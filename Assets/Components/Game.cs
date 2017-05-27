@@ -1,11 +1,16 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
 
     public GameObject enemyPrefab;
     public GameObject fadeText;
+    public Text scoreCounter;
+    private int score = 0;
+
+    
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -20,13 +25,24 @@ public class Game : MonoBehaviour
     /// </summary>
     void Start()
     {
-        AddTarget(-2.55f,-4.21f);
+        foreach(var gameObject in GameObject.FindGameObjectsWithTag("zappable"))
+        {
+            Destroy(gameObject);
+        }
+
+        score = 0;
+        scoreCounter.text = score.ToString();
+        
+        AddTarget(-17.33f,-3.04f);
     }
 
     void OnDestroyed(object destroyed, EventArgs e)
     {  
         Vector3 position = ((GameObject)(destroyed)).transform.position;
         Instantiate(fadeText, position, Quaternion.identity);
+
+        score++;
+        scoreCounter.text = score.ToString();
 
         AddTarget(-16.8f,(float)(UnityEngine.Random.value * 4 - 2.5));
     }

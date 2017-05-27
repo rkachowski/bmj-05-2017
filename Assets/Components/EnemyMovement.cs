@@ -14,12 +14,12 @@ public class EnemyMovement : MonoBehaviour
     {
         baseSpeed += increment;
     }
-    
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        gameObject.transform.position += new Vector3(baseSpeed + (baseSpeed * Random.value),0,0);   
+        gameObject.transform.position += new Vector3(baseSpeed + (baseSpeed * Random.value),Mathf.Sin(Time.time)/100,0);   
     }
 }

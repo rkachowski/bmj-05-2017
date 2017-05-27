@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FadeText : MonoBehaviour
 {
-    public Sprite[] goodSprites;
-
+    string[] goodwords = {"sun1","nice","zzap"};
+    public string[] badwords = {"ohno"};
     private SpriteRenderer _renderer;
     private float _startTime;
     public float duration = 1.5f;
@@ -17,10 +17,14 @@ public class FadeText : MonoBehaviour
     void Start()
     {
         _renderer = gameObject.GetComponent<SpriteRenderer>();    
-        _renderer.sprite = Resources.Load<Sprite>("Sprites/ohno") as Sprite;
+
+        int index = Random.Range(0, goodwords.Length);
+        string word = "words/" + goodwords[index];
+        _renderer.sprite = Resources.Load<Sprite>(word) as Sprite;
         _renderer.color = new Color(1f,1f,1f,maximum);     
         _startTime = Time.time;
     }
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -31,7 +35,7 @@ public class FadeText : MonoBehaviour
 
         if((Time.time - _startTime) > duration)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
