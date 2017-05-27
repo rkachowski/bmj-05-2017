@@ -17,7 +17,7 @@ public class Pendulum : MonoBehaviour {
     public GameObject Bob;
 
 
-    public float mass = 1f;
+    public float mass = 0.1f;
 
     float ropeLength = 2f;
 
