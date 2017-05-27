@@ -18,7 +18,8 @@ public class Lazer : MonoBehaviour
         if( Input.GetKey("space"))
         {
             
-            _renderer.sprite = active;
+            if(_renderer.sprite != active) _renderer.sprite = active;
+ 
             if(Random.value > 0.5)
             {
                 Vector3 cs = this.gameObject.transform.localScale;
@@ -27,7 +28,17 @@ public class Lazer : MonoBehaviour
         }
         else
         {
-            _renderer.sprite = inactive;
+            if(_renderer.sprite != inactive) _renderer.sprite = inactive;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D coll) 
+    {
+        if(_renderer.sprite == active)
+        {
+            if(coll.gameObject.tag == "zappable")
+            {
+                Destroy(coll.gameObject);
+            }
         }
     }
 }

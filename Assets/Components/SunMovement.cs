@@ -4,6 +4,7 @@ public class SunMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public int thrust = 3;
+    private SpriteRenderer _renderer;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -12,6 +13,7 @@ public class SunMovement : MonoBehaviour
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
+        _renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -38,8 +40,16 @@ public class SunMovement : MonoBehaviour
 
         if (Input.GetKey("space"))
         {
-            //handbreak
             rb.velocity = Vector2.zero;
+        }
+
+        if(rb.velocity.x <0)
+        {
+            _renderer.flipX = true;
+        }
+        else
+        {
+            _renderer.flipX = false;
         }
     }   
 }
