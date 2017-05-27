@@ -34,6 +34,8 @@ public class Game : MonoBehaviour
         scoreCounter.text = score.ToString();
         
         AddTarget(-17.33f,-3.04f);
+
+        Debug.Log(Camera.current.aspect);
     }
 
     void OnDestroyed(object destroyed, EventArgs e)
